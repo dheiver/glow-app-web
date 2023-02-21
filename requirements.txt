@@ -7,4 +7,3 @@ matplotlib
 pandas
 scikit-learn
 keras
-protobuf=3.9.2
