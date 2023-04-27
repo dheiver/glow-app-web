@@ -12,6 +12,17 @@ Route::post('/classify', function (Request $request) {
     $imageFullPath = storage_path('app/public/' . $imagePath);
 
     $originalImage = Image::make($imageFullPath);
+
+    // Melhoria 1: verifica se a imagem está em modo RGB
+    if (!$originalImage->isTrueColor()) {
+        $originalImage = $originalImage->convert('RGB');
+    }
+
+    // Melhoria 2: aplica um filtro de nitidez na imagem antes do redimensionamento
+    $originalImage = $originalImage->filter(function ($pixel) {
+        return $pixel->sharpen(50);
+    });
+
     $resizedImage = $originalImage->resize(224, 224);
     $finalImage = $resizedImage->normalize();
 
