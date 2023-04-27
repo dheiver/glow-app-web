@@ -1,5 +1,11 @@
 <?php
 
+// Requisitos:
+// - Laravel 8.x
+// - Intervention Image 2.x
+// - Keras for PHP 3.x
+// - TensorFlow 2.x com suporte a Keras (GPU recomendado)
+
 use Illuminate\Http\Request;
 
 Route::post('/classify', function (Request $request) {
